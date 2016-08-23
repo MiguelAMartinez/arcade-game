@@ -2,6 +2,10 @@
 var squareHeight = 83;
 var squareLength = 101;
 
+// Possible x and y coordinates for the enemies
+var xValues = [-squareLength, (-squareLength) * 1.5];
+var yValues = [60, 60 + squareHeight, 60 + 2 * squareHeight];
+
 // Enemy class
 var Enemy = function() {   
     this.sprite = 'images/enemy-bug.png';
@@ -10,9 +14,6 @@ var Enemy = function() {
 
 // Location and speed of enemies
 Enemy.prototype.newEnemyValues = function() {
-    var xValues = [-squareLength, (-squareLength) * 1.5];
-    var yValues = [60, 60 + squareHeight, 60 + 2 * squareHeight];
-
     this.x = xValues[Math.floor(Math.random() * xValues.length)];
     this.y = yValues[Math.floor(Math.random() * yValues.length)];
     this.speed = 90 * Math.floor((Math.random() * 5) + 1); 

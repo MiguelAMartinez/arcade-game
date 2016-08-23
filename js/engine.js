@@ -89,7 +89,7 @@ var Engine = (function(global) {
         });
         player.render();
 
-        if (won == true || alive == false)  {
+        if (won === true || alive === false)  {
             reset.render();
         }
     }
@@ -105,10 +105,10 @@ var Engine = (function(global) {
 
     // Displays message after reset
     global.reset.render = function() {
-        if (alive == false) {
+        if (alive === false) {
             ctx.drawImage(Resources.get('images/gameover.svg'), 95, 150);        
         }
-        if (won == true) {
+        if (won === true) {
             ctx.drawImage(Resources.get('images/won.svg'), 95, 150);           
         }
     }
@@ -119,26 +119,23 @@ var Engine = (function(global) {
             32: 'spacebar'
         };
 
-        if (alive == false || won == true) {
+        if (alive === false || won === true) {
             newGame(allowedKeys[e.keyCode]); 
         }
     });
 
     var newGame = function(key) {
-        if (key == 'spacebar') {
+        if (key === 'spacebar') {
 
-            if (alive == false) {
+            if (alive === false) {
                 alive = true;            
             } 
 
-            if (won == true) {
+            if (won === true) {
                 won = false;
             }
 
             allEnemies.forEach(function(enemy) {
-                var xValues = [-squareLength, (-squareLength) * 1.5];
-                var yValues = [60, 60 + squareHeight, 60 + 2 * squareHeight];
-
                 enemy.x = xValues[Math.floor(Math.random() * xValues.length)];
                 enemy.y = yValues[Math.floor(Math.random() * yValues.length)];
                 enemy.speed = 90 * Math.floor((Math.random() * 5) + 1); 
