@@ -48,7 +48,7 @@ Player.prototype.newPlayerValues = function() {
 
 // Check if player arrived to goal
 Player.prototype.update = function() {
-    if (player.y == -10) {
+    if (this.y == -10) {
         won = true;
         reset();
     }
