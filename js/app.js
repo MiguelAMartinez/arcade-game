@@ -24,16 +24,11 @@ Character.prototype.render = function() {
 var Enemy = function(x,y,v,url) {  
     Character.call(this,url);
     this.position(x,y);
-    this.speed(v); 
+    this.speed = v; 
 };
 
 Enemy.prototype = Object.create(Character.prototype);
 Enemy.prototype.constructor = Enemy;
-
-// Location and speed of enemies
-Enemy.prototype.speed = function(v) {
-    this.speed = v; 
-};
 
 // Update location and check for collision with player
 Enemy.prototype.update = function(dt) {
