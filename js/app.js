@@ -48,7 +48,7 @@ Player.prototype.newPlayerValues = function() {
 
 // Check if player arrived to goal
 Player.prototype.update = function() {
-    if (this.y == -10) {
+    if (this.y === -10) {
         won = true;
         reset();
     }
@@ -60,14 +60,14 @@ Player.prototype.render = function() {
 
 // Control player with arrow keys
 Player.prototype.handleInput = function(key) {
-    if (alive == true && won == false) {
-        if (key == 'up' && this.y > - 10) {
+    if (alive === true && won === false) {
+        if (key === 'up' && this.y > - 10) {
             this.y = this.y - squareHeight;
-        } else if (key == 'down' && this.y < (squareHeight * 5) - 10) {
+        } else if (key === 'down' && this.y < (squareHeight * 5) - 10) {
             this.y = this.y + squareHeight;
-        } else if (key == 'left' && this.x > 0) {
+        } else if (key === 'left' && this.x > 0) {
             this.x = this.x - squareLength;
-        } else if (key == 'right' && this.x < squareLength * 4) {
+        } else if (key === 'right' && this.x < squareLength * 4) {
             this.x = this.x + squareLength;
         }    
     }
