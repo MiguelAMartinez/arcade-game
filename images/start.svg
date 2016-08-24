@@ -1,0 +1,16 @@
+<svg width="400" height="250" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+ <g>
+  <title>background</title>
+  <rect fill="#fff" id="canvas_background" height="252" width="402" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <rect id="svg_5" height="238.000018" width="386.999992" y="5.449986" x="6.500008" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="#fff"/>
+  <rect id="svg_2" height="1" width="0" y="477.949997" x="489.5" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="#fff"/>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="30" id="svg_3" y="63.949997" x="46.5" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">Use  the arrow keys to</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="30" id="svg_4" y="191.449997" x="47.5" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">Press space to start</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="30" id="svg_6" y="99.949997" x="46.5" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">reach the water while</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="30" id="svg_7" y="136.949997" x="46.5" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">avoiding the bugs</text>
+ </g>
+</svg>
