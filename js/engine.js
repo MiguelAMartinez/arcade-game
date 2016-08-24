@@ -1,6 +1,7 @@
 // Start the game alive
 var alive = true;
 var won = false;
+var start = true;
 
 var Engine = (function(global) {
 
@@ -38,7 +39,7 @@ var Engine = (function(global) {
     // Initial setup and select lasTime variable for game loop
     function init() {
         lastTime = Date.now();
-        main();
+        main();            
     }
 
     // This function is called by main (our game loop) and itself calls all
@@ -50,10 +51,12 @@ var Engine = (function(global) {
     // This function calls the update() methods of the
     // objects within your allEnemies array and the player object
     function updateEntities(dt) {
-        allEnemies.forEach(function(enemy) {
-            enemy.update(dt);
-        });
-        player.update();
+        if (won === false && alive === true && start === false) {       
+            allEnemies.forEach(function(enemy) {
+                enemy.update(dt);
+            });
+            player.update();
+        }
     }
 
      // This function is called in every loop of the game engine, and it will then 
@@ -82,34 +85,21 @@ var Engine = (function(global) {
         renderEntities();
     }
 
-    // Call the render functions on your enemy and player entities within app.js
+    // Display the game when you are playing or a message when you are not
     function renderEntities() {
         allEnemies.forEach(function(enemy) {
             enemy.render();
         });
-        player.render();
+        player.render();  
 
-        if (won === true || alive === false)  {
-            reset.render();
-        }
-    }
-
-    // Reset game when you loose or win   
-    global.reset = function() {
-        allEnemies.forEach(function(enemy) {
-            enemy.x = -squareLength;
-            enemy.y = 60;
-            enemy.speed = 0; 
-        });
-    };
-
-    // Displays message after reset
-    global.reset.render = function() {
         if (alive === false) {
-            ctx.drawImage(Resources.get('images/gameover.svg'), 95, 150);        
-        }
+            ctx.drawImage(Resources.get('images/gameover.svg'), 50, 150);        
+        }       
         if (won === true) {
-            ctx.drawImage(Resources.get('images/won.svg'), 95, 150);           
+            ctx.drawImage(Resources.get('images/won.svg'), 50, 150);           
+        }
+        if (start === true) {
+            ctx.drawImage(Resources.get('images/start.svg'), 50, 150);           
         }
     }
     
@@ -118,31 +108,33 @@ var Engine = (function(global) {
         var allowedKeys = {
             32: 'spacebar'
         };
-
-        if (alive === false || won === true) {
+        if (alive === false || won === true || start === true) {
             newGame(allowedKeys[e.keyCode]); 
         }
     });
 
+    // Start a new game
     var newGame = function(key) {
         if (key === 'spacebar') {
+            allEnemies.forEach(function(enemy) {
+                x = xValues[Math.floor(Math.random() * xValues.length)];
+                y = yValues[Math.floor(Math.random() * yValues.length)];
+                v = 90 * Math.floor((Math.random() * 5) + 1);
+                enemy.position(x,y);
+                enemy.speed = v;
+            });
+
+            player.position(squareLength * 2,(squareHeight * 5) - 10);
 
             if (alive === false) {
                 alive = true;            
             } 
-
             if (won === true) {
                 won = false;
             }
-
-            allEnemies.forEach(function(enemy) {
-                enemy.x = xValues[Math.floor(Math.random() * xValues.length)];
-                enemy.y = yValues[Math.floor(Math.random() * yValues.length)];
-                enemy.speed = 90 * Math.floor((Math.random() * 5) + 1); 
-            });
-
-            player.x = squareLength * 2;
-            player.y = (squareHeight * 5) - 10;
+            if (start === true) {
+                start = false;
+            }
         }
     };
 
@@ -154,7 +146,8 @@ var Engine = (function(global) {
         'images/enemy-bug.png',
         'images/char-boy.png', 
         'images/gameover.svg',
-        'images/won.svg' 
+        'images/won.svg',
+        'images/start.svg'
     ]);
     Resources.onReady(init);
     global.ctx = ctx;

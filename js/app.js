@@ -42,7 +42,6 @@ Enemy.prototype.update = function(dt) {
     }
     if ((Math.abs(this.x - player.x) < 60) && (Math.abs(this.y - player.y) < 20)) {
         alive = false;   
-        reset();
     }
 };
 
@@ -59,23 +58,20 @@ Player.prototype.constructor = Player;
 Player.prototype.update = function() {
     if (this.y === -10) {
         won = true;
-        reset();
     }
 };
 
 // Control player with arrow keys
 Player.prototype.handleInput = function(key) {
-    if (alive === true && won === false) {
-        if (key === 'up' && this.y > - 10) {
-            this.y = this.y - squareHeight;
-        } else if (key === 'down' && this.y < (squareHeight * 5) - 10) {
-            this.y = this.y + squareHeight;
-        } else if (key === 'left' && this.x > 0) {
-            this.x = this.x - squareLength;
-        } else if (key === 'right' && this.x < squareLength * 4) {
-            this.x = this.x + squareLength;
-        }    
-    }
+    if (key === 'up' && this.y > - 10) {
+        this.y = this.y - squareHeight;
+    } else if (key === 'down' && this.y < (squareHeight * 5) - 10) {
+        this.y = this.y + squareHeight;
+    } else if (key === 'left' && this.x > 0) {
+        this.x = this.x - squareLength;
+    } else if (key === 'right' && this.x < squareLength * 4) {
+        this.x = this.x + squareLength;
+    }    
 };
 
 // Enemy objects 
@@ -100,6 +96,7 @@ document.addEventListener('keyup', function(e) {
         39: 'right',
         40: 'down'
     };
-
-    player.handleInput(allowedKeys[e.keyCode]);
+    if (won === false && alive === true && start === false) {
+        player.handleInput(allowedKeys[e.keyCode]); 
+    }
 });
